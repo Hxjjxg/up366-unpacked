@@ -1,0 +1,6 @@
+package io.objectbox.internal;
+
+/* JADX INFO: loaded from: E:\up366_re\dump\classes11.dex */
+public interface IdGetter<T> {
+    long getId(T t);
+}

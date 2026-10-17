@@ -1,0 +1,35 @@
+[
+  {
+    "file": "classes.dex",
+    "source": "dump/classes09.dex",
+    "size": 5229716,
+    "file_size_field": 5229716,
+    "class_defs": 4480,
+    "strings": 46959,
+    "adler32_ok": true,
+    "md5": "8fceb7c7cbc47095aa51eed9ee428d2c",
+    "sha256": "784c41ed38f9ba9b6671b98de4fe87c072698045cd3b610ecc3343a1f444a2d9"
+  },
+  {
+    "file": "classes2.dex",
+    "source": "dump/classes11.dex",
+    "size": 4199356,
+    "file_size_field": 4199356,
+    "class_defs": 3890,
+    "strings": 34218,
+    "adler32_ok": true,
+    "md5": "0a93dcbaf1dbfa25bb73d1503d93def9",
+    "sha256": "ee824fd71f5e827ae319b2fa5ee49876a812aaae4fdb7f8bdf02f88ab7002368"
+  },
+  {
+    "file": "classes3.dex",
+    "source": "dump/classes15.dex",
+    "size": 1329900,
+    "file_size_field": 1329900,
+    "class_defs": 1273,
+    "strings": 12016,
+    "adler32_ok": true,
+    "md5": "861a985241a6d5d8e1a56dd9c8922b56",
+    "sha256": "49827eb1aa3a72620669475dc7b07b4f60ea0b6335266f80a9f3c5f692c94d4c"
+  }
+]

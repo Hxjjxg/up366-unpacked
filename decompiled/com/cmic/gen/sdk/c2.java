@@ -1,0 +1,64 @@
+package com.cmic.gen.sdk;
+
+/* JADX INFO: compiled from: ZteOAID.java */
+/* JADX INFO: loaded from: E:\up366_re\dump\classes15.dex */
+public class c2 extends com.cmic.gen.sdk.o0 {
+    private final android.content.Context a;
+    private final java.util.concurrent.LinkedBlockingQueue<android.os.IBinder> b = new java.util.concurrent.LinkedBlockingQueue<>(1);
+    private final android.content.ServiceConnection c = new com.cmic.gen.sdk.c2.a();
+
+    /* JADX INFO: compiled from: ZteOAID.java */
+    class a implements android.content.ServiceConnection {
+        a() {
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceConnected(android.content.ComponentName componentName, android.os.IBinder iBinder) {
+            try {
+                com.cmic.gen.sdk.c2.this.b.offer(iBinder, com.up366.asecengine.englishengine.v2.model.AsecOnlineScoringConfig.MAX_STOP_ACK_WAIT_MS, java.util.concurrent.TimeUnit.MILLISECONDS);
+            } catch (java.lang.InterruptedException unused) {
+            }
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceDisconnected(android.content.ComponentName componentName) {
+        }
+    }
+
+    c2(android.content.Context context) {
+        this.a = context;
+    }
+
+    @Override // com.cmic.gen.sdk.o0
+    public java.lang.String a() {
+        android.content.Intent intent = new android.content.Intent();
+        intent.setClassName("com.mdid.msa", "com.mdid.msa.service.MsaIdService");
+        intent.setAction("com.bun.msa.action.bindto.service");
+        intent.putExtra("com.bun.msa.param.pkgname", this.a.getPackageName());
+        if (this.a.bindService(intent, this.c, 1)) {
+            try {
+                android.os.IBinder iBinderPoll = this.b.poll(com.up366.asecengine.englishengine.v2.model.AsecOnlineScoringConfig.MAX_STOP_ACK_WAIT_MS, java.util.concurrent.TimeUnit.MILLISECONDS);
+                if (iBinderPoll == null) {
+                    return "";
+                }
+                android.os.Parcel parcelObtain = android.os.Parcel.obtain();
+                android.os.Parcel parcelObtain2 = android.os.Parcel.obtain();
+                try {
+                    parcelObtain.writeInterfaceToken("com.bun.lib.MsaIdInterface");
+                    iBinderPoll.transact(3, parcelObtain, parcelObtain2, 0);
+                    parcelObtain2.readException();
+                    java.lang.String string = parcelObtain2.readString();
+                    parcelObtain.recycle();
+                    parcelObtain2.recycle();
+                    return string;
+                } catch (java.lang.Throwable unused) {
+                    parcelObtain.recycle();
+                    parcelObtain2.recycle();
+                    this.a.unbindService(this.c);
+                }
+            } catch (java.lang.Exception unused2) {
+            }
+        }
+        return "";
+    }
+}
